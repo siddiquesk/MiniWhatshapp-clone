@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatting chat</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h2>All charts!</h2>
+    <form method="GET" action="/chats/new">
+      <button class="btn">add new chart</button>
+    </form>
+
+    <% for(let charts of allchats){ %>
+    <div class="chart">
+      <p>
+        From:<i> <b><%=charts.from %></b></i>
+      </p>
+      <div class="msg">
+        <p><%=charts.msg%></p>
+        <form method="GET" action="/chats/<%=charts._id %>/edit">
+          <button class="edit">edit</button>
+        </form>
+        <form method="POST" action="/chats/<%=charts._id %>?_method=DELETE">
+          <button class="edit">Delete</button>
+        </form>
+      </div>
+
+      <p>Recived by:<%=charts.to%></p>
+      <hr />
+      <p><%=charts.created_at.toString().split(" ")[4] %></p>
+      <p>
+        <%=charts.created_at.toString().split(" ").slice(0,4).join(" - ") %>
+      </p>
+    </div>
+    <br />
+    <br />
+    <% } %>
+  </body>
+</html>
